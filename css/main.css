@@ -54,6 +54,7 @@ body {
 
 .map__cell_selected{
     box-shadow: inset 0 0 20px 0 #da002b;
+    z-index: 2;
 }
 
 .map__row_selected{
