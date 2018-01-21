@@ -84,7 +84,12 @@
       function f() {
         addSelectedForSell(cells[j]);
         if (cells[j].classList.contains('map__cell_island')) {
-          console.log('asd');
+          addOne.classList.add('map__counter-add_active');
+          (function () {
+            setTimeout(function () {
+              addOne.classList.remove('map__counter-add_active')
+            }, 1000);
+          })();
           counterOfItems += 1;
           mapCounterValue.innerHTML = counterOfItems;
         }
