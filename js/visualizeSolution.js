@@ -25,6 +25,8 @@
     var mapIslandCounterLabel = element('h2', 'map__counter-label', 'Counter of Islands: ');
     var mapIslandCounterValue = element('div', 'map__counter-value', `${counterOfIslands}`);
 
+    var timeForRows = (rows.length - 1) * 1000;
+
 
     var addOne = element('div', 'map__counter-add', '+1');
 
@@ -84,6 +86,8 @@
       function f() {
         addSelectedForSell(cells[j]);
         if (cells[j].classList.contains('map__cell_island')) {
+          checkNextElement(cells[j]);
+          checkUnderlyingElement(row, j);
           addOne.classList.add('map__counter-add_active');
           (function () {
             setTimeout(function () {
@@ -100,6 +104,7 @@
       }
 
       f();
+
       (function () {
         setTimeout(function () {
           row.classList.remove('map__row_selected')
@@ -116,7 +121,25 @@
         }, 5000 / 4);
       })();
     }
+
+    function checkNextElement(cell){
+      var nextElement = cell.nextSibling;
+      console.log(nextElement.classList.contains('map__cell_island'));
+      /*if( nextElement.classList.contains('map__cell_island')){
+        counterOfIslands += 1;
+      }*/
+    }
+
+    function checkUnderlyingElement(row, index){
+      var nextRow = row.nextSibling;
+      console.log(nextRow.childNodes[index].classList.contains('map__cell_island'))
+      /*if(nextRow.childNodes[index].classList.contains('map__cell_island')){
+        counterOfIslands += 1;
+      }*/
+    }
   }
+
+
 
   root.SHRI_ISLANDS.visualizeSolution = visualizeSolution;
 })(this);
