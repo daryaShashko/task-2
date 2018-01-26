@@ -6,7 +6,7 @@
       root.SHRI_ISLANDS.render(map, count)
     );
 
-    document.addEventListener("DOMContentLoaded", function(event) {
+    /*document.addEventListener("DOMContentLoaded", function(event) {
         root.SHRI_ISLANDS.visualizeSolution(map);
-    });
+    });*/
 })(this);

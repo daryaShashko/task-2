@@ -86,8 +86,12 @@
       function f() {
         addSelectedForSell(cells[j]);
         if (cells[j].classList.contains('map__cell_island')) {
-          checkNextElement(cells[j]);
-          checkUnderlyingElement(row, j);
+          if(checkExistOfNextElement(cells[j])){
+            checkNextElement(cells[j]);
+          }
+          if(checkExistOfUnderlyingElement(row)){
+            checkUnderlyingElement(row, j);
+          }
           addOne.classList.add('map__counter-add_active');
           (function () {
             setTimeout(function () {
@@ -124,18 +128,28 @@
 
     function checkNextElement(cell){
       var nextElement = cell.nextSibling;
-      console.log(nextElement.classList.contains('map__cell_island'));
-      /*if( nextElement.classList.contains('map__cell_island')){
+      if(nextElement.classList.contains('map__cell_island')){
         counterOfIslands += 1;
-      }*/
+        mapIslandCounterValue.innerHTML = counterOfItems;
+      }
+    }
+
+    function checkExistOfNextElement(cell){
+      var nextElement = cell.nextSibling;
+      return nextElement !== null;
+    }
+
+    function checkExistOfUnderlyingElement(row){
+      var nextRow = row.nextSibling;
+      return nextRow !== null;
     }
 
     function checkUnderlyingElement(row, index){
       var nextRow = row.nextSibling;
-      console.log(nextRow.childNodes[index].classList.contains('map__cell_island'))
-      /*if(nextRow.childNodes[index].classList.contains('map__cell_island')){
-        counterOfIslands += 1;
-      }*/
+      if(nextRow.childNodes[index].classList.contains('map__cell_island')){
+       counterOfIslands += 1;
+       mapIslandCounterValue.innerHTML = counterOfItems;
+      }
     }
   }
 
